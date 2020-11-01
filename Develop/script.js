@@ -21,6 +21,15 @@ var toUpper = function (x) {
 //Creates uppercase from lowercase letters
 upperCase = lowerCase.map(toUpper);
 
+// Get references to the #generate element
+var generateBtn = document.querySelector("#generate");
+
+generateBtn.addEventListener('click', function() {
+  ps = generatePassword();
+  document.getElementById("password").placeholer = ps;
+});
+
+function generatePassword () {
 //prompts for password count
 enter = parseInt(prompt("How many characters will your password be? Must be between 8 and 128"))
 //if less than 8 or over 128 error or no enter error
@@ -41,11 +50,9 @@ confirmLowercase = confirm('Will your password contain lowercase letters?');
 if (!confirmCharacter && !confirmNumber && !confirmUppercase && !confirmLowercase) {
   choices = alert('You must choose a criteria to set a password')
 }
-
+};
 //
 
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
