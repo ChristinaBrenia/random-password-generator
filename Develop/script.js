@@ -7,6 +7,7 @@ var confirmCharacter;
 var confirmUppercase;
 var confirmLowercase;
 
+//Look into ways of selecting symbols & Letters by assigned code instead of array
 //Special character arrays varaibles
 character = ["!", "#", "$", "%", "&","'", "(", ")", "*", "+", ",","-",".", "/"];
 //Number
@@ -21,9 +22,11 @@ var toUpper = function (x) {
 //Creates uppercase from lowercase letters
 upperCase = lowerCase.map(toUpper);
 
+// Write password to the #password input
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
+//Add event listener to generate button
 // makes button start the function
 generateBtn.addEventListener('click', function() {
   ps = generatePassword();
@@ -37,7 +40,7 @@ enter = parseInt(prompt("How many characters will your password be? Must be betw
 //if less than 8 or over 128 error or no enter error
 if (!enter) {
   alert("Your password must have a value")
-
+//Something is quite right with this selector - look at another time
 }else if (enter <= 7 || enter > 128) {
   enter = parseInt(prompt('You must enter a value between 8 and 128'));
 }else {
@@ -50,7 +53,7 @@ confirmLowercase = confirm('Will your password contain lowercase letters?');
 
 //Didnt Confirm character, confirm number, or confirm uppercase, or confirm lowercase - did not meet requirement 
 if (!confirmCharacter && !confirmNumber && !confirmUppercase && !confirmLowercase) {
-  choices = alert('You must choose a criteria to set a password')
+  choices = alert('You must choose a criteria to set a password - try again')
 }
 
 
@@ -68,7 +71,7 @@ else if (confirmCharacter && confirmNumber && confirmLowercase) {
 else if (confirmCharacter && confirmLowercase && confirmUppercase) {
   choices = character.concat(lowerCase, upperCase);
 }
-else if (confirmNumber && confirmLowercase &&confirmUppercase) {
+else if (confirmNumber && confirmLowercase && confirmUppercase) {
   choices = number.concat(upperCase, lowerCase);
 }
 //Else if for 2 positive options
@@ -103,16 +106,25 @@ else if (confirmLowercase) {
 else if (confirmUppercase) {
   choices = upperCase;
 }
+
+var password = [];
+
+for (var i = 0; i < enter; i++) {
+  var pickChoices = choices[Math.floor(Math.random() * choices.length)];
+  password.push(pickChoices);
+}
+// This joins the password array and converts it to a string
+//I need to re-look at this
+var ps = password.join("");
+UserInput(ps);
+return ps;
+
 };
 
-// // Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
+function UserInput(ps) {
+  document.getElementById("password").textContent = ps;
 
-//   passwordText.value = password;
+}
 
-// }
 
-// // Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);
+
