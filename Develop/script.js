@@ -24,11 +24,13 @@ upperCase = lowerCase.map(toUpper);
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
+// makes button start the function
 generateBtn.addEventListener('click', function() {
   ps = generatePassword();
   document.getElementById("password").placeholer = ps;
 });
 
+// starts function to generate password 
 function generatePassword () {
 //prompts for password count
 enter = parseInt(prompt("How many characters will your password be? Must be between 8 and 128"))
@@ -50,18 +52,67 @@ confirmLowercase = confirm('Will your password contain lowercase letters?');
 if (!confirmCharacter && !confirmNumber && !confirmUppercase && !confirmLowercase) {
   choices = alert('You must choose a criteria to set a password')
 }
-};
-//
 
 
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
+//if statements that use the users prompt answers 
+else if (confirmCharacter && confirmNumber && confirmUppercase && confirmLowercase) {
+  choices = character.concat(number, upperCase);
 }
+//Else if for 3
+else if (confirmCharacter && confirmNumber && confirmUppercase) {
+  choices = character.concat(number, upperCase);
+}
+else if (confirmCharacter && confirmNumber && confirmLowercase) {
+  choices = character.concat(number, lowerCase);
+}
+else if (confirmCharacter && confirmLowercase && confirmUppercase) {
+  choices = character.concat(lowerCase, upperCase);
+}
+else if (confirmNumber && confirmLowercase &&confirmUppercase) {
+  choices = number.concat(upperCase, lowerCase);
+}
+//Else if for 2 positive options
+else if (confirmCharacter && confirmNumber) {
+  choices = character.concat(number);
+}
+else if (confirmCharacter && confirmLowercase) {
+  choices = character.concat(lowerCase);
+}
+else if (confirmCharacter && confirmUppercase) {
+  choices = character.concat(upperCase);
+}
+else if (confirmLowercase && confirmNumber) {
+  choices = lowerCase.concat(number);
+}
+else if (confirmLowercase && confirmUppercase) {
+  choices = lowerCase.concat(upperCase);
+}
+else if (confirmNumber && confirmUppercase) {
+    choices = number.concat(upperCase);
+}
+//Else if for 1 option
+else if (confirmCharacter) {
+  choices = character;
+}
+else if (confirmNumber) {
+  choices = number;
+}
+else if (confirmLowercase) {
+  choices = lowerCase;
+}
+else if (confirmUppercase) {
+  choices = upperCase;
+}
+};
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+// // Write password to the #password input
+// function writePassword() {
+//   var password = generatePassword();
+//   var passwordText = document.querySelector("#password");
+
+//   passwordText.value = password;
+
+// }
+
+// // Add event listener to generate button
+// generateBtn.addEventListener("click", writePassword);
