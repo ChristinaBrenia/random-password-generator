@@ -106,7 +106,7 @@ else if (confirmLowercase) {
 else if (confirmUppercase) {
   choices = upperCase;
 }
-
+//Function to generate password - re-look into this
 var password = [];
 
 for (var i = 0; i < enter; i++) {
@@ -114,10 +114,10 @@ for (var i = 0; i < enter; i++) {
   password.push(pickChoices);
 }
 // This joins the password array and converts it to a string
-//I need to re-look at this
-var ps = password.join("");
-UserInput(ps);
-return ps;
+//I need to re-look at this I do not completely understand
+ var ps = password.join("");
+ UserInput(ps);
+ return ps;
 
 };
 
